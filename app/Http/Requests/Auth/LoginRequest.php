@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Requests\Auth;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class LoginRequest extends FormRequest
+{
+    public function authorize(): bool { return true; }
+
+    public function rules(): array
+    {
+        return [
+            'email'    => ['required', 'email'],
+            'password' => ['required'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required'    => 'Email kiritish shart.',
+            'email.email'       => 'Email noto\'g\'ri formatda.',
+            'password.required' => 'Parol kiritish shart.',
+        ];
+    }
+}
