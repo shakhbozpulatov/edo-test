@@ -4,8 +4,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Document\AttachmentController;
 use App\Http\Controllers\Document\DocumentController;
+use App\Http\Controllers\Document\DocumentEditorController;
 use App\Http\Controllers\Document\OrganizationController;
 use App\Http\Controllers\Document\TemplateController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -28,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     Route::get('/documents/{document}/download', [DocumentController::class, 'downloadMain'])->name('documents.download-main');
     Route::post('/documents/{document}/qr-position', [DocumentController::class, 'updateQrPosition'])->name('documents.qr-position');
+    Route::get('/documents/{document}/editor', [DocumentEditorController::class, 'show'])->name('documents.editor');
+    Route::get('/documents/{document}/content', [DocumentEditorController::class, 'content'])->name('documents.content');
+    Route::get('/documents/{document}/download-with-qr', [DocumentEditorController::class, 'downloadWithQr'])->name('documents.download-with-qr');
+    Route::post('/documents/{document}/save-content', [DocumentEditorController::class, 'saveContent'])->name('documents.save-content');
 
     Route::post('/documents/{document}/attachments', [AttachmentController::class, 'store'])->name('attachments.store');
     Route::get('/documents/{document}/attachments/{attachment}/download', [AttachmentController::class, 'download'])->name('attachments.download');
@@ -39,4 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/organizations/tree', [OrganizationController::class, 'tree'])->name('organizations.tree');
     Route::get('/organizations/regions', [OrganizationController::class, 'regions'])->name('organizations.regions');
     Route::get('/organizations/regions/{region}/districts', [OrganizationController::class, 'districts'])->name('organizations.districts');
+
+    Route::get('/files', [FileController::class, 'index'])->name('files.index');
+    Route::post('/files', [FileController::class, 'store'])->name('files.store');
+    Route::get('/files/{slug}', [FileController::class, 'show'])->name('files.show');
+    Route::get('/files/{slug}/download', [FileController::class, 'downloadFile'])->name('files.download');
+    Route::delete('/files/{file}', [FileController::class, 'destroy'])->name('files.destroy');
 });

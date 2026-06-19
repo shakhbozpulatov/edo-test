@@ -4,28 +4,7 @@
 @section('page-title', 'Imzolangan hujjatlar')
 
 @push('styles')
-<style>
-    .doc-layout { display: grid; grid-template-columns: 320px 1fr; gap: 16px; height: calc(100vh - 56px - 48px); }
-    .doc-list { background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; overflow: hidden; display: flex; flex-direction: column; }
-    .doc-list-header { padding: 12px 16px; border-bottom: 1px solid #f3f4f6; font-size: 13px; font-weight: 600; color: #6b7280; }
-    .doc-list-body { overflow-y: auto; flex: 1; }
-    .doc-item { padding: 14px 16px; border-bottom: 1px solid #f9fafb; cursor: pointer; transition: background .12s; text-decoration: none; display: block; }
-    .doc-item:hover { background: #f9fafb; }
-    .doc-item.active { background: #ecfdf5; border-left: 3px solid #059669; }
-    .doc-item-number { font-size: 13px; font-weight: 600; color: #1f2937; }
-    .doc-item-desc { font-size: 12px; color: #6b7280; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .doc-item-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-    .doc-panel { background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; overflow: hidden; display: flex; flex-direction: column; }
-    .doc-panel-header { padding: 16px 20px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; justify-content: space-between; }
-    .doc-panel-body { overflow-y: auto; flex: 1; padding: 20px; }
-    .detail-row { display: flex; gap: 16px; padding: 10px 0; border-bottom: 1px solid #f9fafb; }
-    .detail-label { font-size: 12px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .06em; width: 180px; flex-shrink: 0; padding-top: 2px; }
-    .detail-value { font-size: 14px; color: #1f2937; flex: 1; }
-    .empty-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9ca3af; text-align: center; }
-    .empty-panel svg { width: 56px; height: 56px; margin-bottom: 12px; }
-    .tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; background: #f3f4f6; color: #4b5563; margin: 2px; }
-    .signed-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #d1fae5; color: #065f46; border-radius: 8px; font-size: 13px; font-weight: 600; }
-</style>
+<link rel="stylesheet" href="{{ asset('css/documents/signed.css') }}">
 @endpush
 
 @section('content')

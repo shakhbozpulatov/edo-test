@@ -123,11 +123,11 @@ class DocumentController extends Controller
     {
         $this->authorize('update', $document);
 
-        if ($document->recipients()->count() === 0) {
-            return back()->withErrors(['sign' => 'Imzolash uchun kamida bitta qabul qiluvchi tanlash shart.']);
-        }
-
         abort_unless($document->main_file_path, 422, 'Asosiy hujjat fayli mavjud emas.');
+
+        if ($document->recipients()->count() === 0) {
+            return back()->with('warning', 'Hujjat imzolandi, ammo qabul qiluvchilar tanlanmagan. Hujjatni tahrirlash orqali qabul qiluvchilarni qo\'shing.');
+        }
 
         $document->update([
             'status'    => DocumentStatus::Signed->value,
